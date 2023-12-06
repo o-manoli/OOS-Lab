@@ -19,20 +19,15 @@
 import sys
 import os
 
-def parse():
-	if len(sys.argv) < 2:
-		print(__doc__)
-		raise SyntaxError("\n\nNot Enough arguments !!!")
-	return sys.argv[1], *sys.argv[2:]
 
-def main():
-	exe, *input_files = parse()
-	for stdin in input_files:
-		print(f"\n\tTesting: {stdin}\n\n")
-		os.system(f"{exe} < {stdin}")
-		print(2*"\n" + ' '.join(12*'-') + 2*"\n")
+if len(sys.argv) < 2:
+	print(__doc__)
+	raise ValueError("\n\nNot Enough arguments !!!")
 
+exe, *input_files = sys.argv[1], *sys.argv[2:]
 
-if __name__ == '__main__':
-	main()
+for stdin in input_files:
+	print(f"\n\tTesting: {stdin}\n\n")
+	os.system(f"{exe} < {stdin}")
+	print(2*"\n" + ' '.join(12*'-') + 2*"\n")
 
