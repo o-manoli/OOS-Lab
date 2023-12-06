@@ -12,7 +12,7 @@ int main()
 	m.print();
 	cout << "Gehalt: " << m.get_income() << endl << endl;
 
-	Worker w("Manoli", "Owes", 15.00, 40);
+	Worker w("Manoli", "O-", 15.00, 40);
 	w.print();
 	cout << "Lohn: " << w.get_income() << endl;
 

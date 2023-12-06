@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	Manager m("Manoli", "Owes", 1000.00);
+	Manager m("Manoli", "O-", 1000.00);
 	m.print();
 	cout << "Gehalt: " << m.get_income() << endl << endl;
 	Worker w("Peter", "Mueller", 15.00, 40);
