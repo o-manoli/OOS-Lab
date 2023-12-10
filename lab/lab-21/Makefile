@@ -12,7 +12,7 @@ link: $(OBJs)
 	$(CC) -o $(EXE) *.o
 
 %:%.cpp
-	$(CC) $(CFlags) -o $@.o $<
+	$(CC) $(CFlags) $< -o $@.o
 
 run: link
 	@ echo - - - - - - - - - - - - - -
