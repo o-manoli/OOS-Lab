@@ -13,7 +13,7 @@ class Meal
 
    Meal(string name) : _name(name) {}
 
-   virtual void add_topping(string top) = 0;
+   virtual void add_topping(string) = 0;
    virtual void prepare() = 0;
 
    friend ostream& operator<<(ostream& S , const Meal& M)
@@ -25,34 +25,35 @@ class Meal
 
 class Pizza : public Meal
 {
-   vector<string> toppings;
+   vector<string> _toppings;
 
    public:
 
    Pizza(string name) : Meal(name) {}
 
-   void add_topping(string top) {toppings.push_back(top);}
+   void add_topping(string topping) {_toppings.push_back(topping);}
 
-   void prepare() {
+   void prepare()
+   {
       cout
       << "Pizza " << *this
       << ". Pizzaboden, belegt mit: "
       << endl;
 
-      for (const auto &t : toppings)
+      for (const auto &t : _toppings)
          cout << "- " << t <<endl;
    }
 };
 
 class Burger : public Meal
 {
-   vector<string>toppings;
+   vector<string>_toppings;
 
    public:
 
    Burger(string name): Meal(name){}
 
-   void add_topping(string top) {toppings.push_back(top);}
+   void add_topping(string topping) {_toppings.push_back(topping);}
 
    void prepare()
    {
@@ -61,7 +62,7 @@ class Burger : public Meal
       << ". Brötchen mit: "
       << endl;
 
-      for (const auto &t : toppings)
+      for (const auto &t : _toppings)
          cout << "- " << t <<endl;
    }
 };
