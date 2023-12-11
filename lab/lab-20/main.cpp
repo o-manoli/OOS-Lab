@@ -2,7 +2,8 @@
 #include <string>
 using namespace std;
 
-class AuthenticationResult{
+class AuthenticationResult
+{
    bool _authenticated;
    string _username;
 
@@ -17,15 +18,15 @@ class AuthenticationResult{
    string username() {return _username;}
 };
 
-class IAuthenticationProcedure {
-
+class IAuthenticationProcedure
+{
    public:
 
    virtual AuthenticationResult authenticate() = 0;
 };
 
-class MockAuthentication : public IAuthenticationProcedure {
-
+class MockAuthentication : public IAuthenticationProcedure
+{
    public:
 
    AuthenticationResult authenticate()
@@ -34,7 +35,8 @@ class MockAuthentication : public IAuthenticationProcedure {
    }
 };
 
-class UsernamePassword : public IAuthenticationProcedure {
+class UsernamePassword : public IAuthenticationProcedure
+{
    string _username;
    string _password;
 
@@ -53,7 +55,8 @@ class UsernamePassword : public IAuthenticationProcedure {
    }
 };
 
-class Certificate : public IAuthenticationProcedure {
+class Certificate : public IAuthenticationProcedure
+{
    string _zertifikataussteller;
 
    public:
@@ -69,7 +72,8 @@ class Certificate : public IAuthenticationProcedure {
    }
 };
 
-class Client {
+class Client
+{
    IAuthenticationProcedure* _authentication_procedure;
 
    public:
@@ -85,20 +89,25 @@ class Client {
       AuthenticationResult result = _authentication_procedure->authenticate();
 
       if (result.authenticated() == true)
+      {
          cout
          << "Das Programm wird ausgeführt für "
          << result.username()
          << "."
          << endl;
-      else
-         cout
-         << "Das Programm konnte nicht ausgeführt werden."
-         << endl;
+
+         return;
       }
+
+      cout  // no return
+      << "Das Programm konnte nicht ausgeführt werden."
+      << endl;
+   }
 };
 
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
    Client client;
 
    cout << "Authentifizierung über das Authentifizierungsverfahren Mock Authentication" << endl;
@@ -117,6 +126,4 @@ int main(int argc, char* argv[]) {
    client.execute();
    return 0;
 }
-
-
 

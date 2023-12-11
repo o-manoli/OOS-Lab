@@ -5,7 +5,8 @@
 
 using namespace std;
 
-class Meal {
+class Meal
+{
    string _name;
 
    public:
@@ -14,6 +15,7 @@ class Meal {
 
    virtual void add_topping(string top) = 0;
    virtual void prepare() = 0;
+
    friend ostream& operator<<(ostream& S , const Meal& M)
    {
       return S << M._name;
@@ -21,10 +23,12 @@ class Meal {
 };
 
 
-class Pizza : public Meal {
+class Pizza : public Meal
+{
    vector<string> toppings;
 
    public:
+
    Pizza(string name) : Meal(name) {}
 
    void add_topping(string top) {toppings.push_back(top);}
@@ -40,7 +44,8 @@ class Pizza : public Meal {
    }
 };
 
-class Burger : public Meal {
+class Burger : public Meal
+{
    vector<string>toppings;
 
    public:
@@ -49,7 +54,8 @@ class Burger : public Meal {
 
    void add_topping(string top) {toppings.push_back(top);}
 
-   void prepare() {
+   void prepare()
+   {
       cout
       << *this
       << ". Brötchen mit: "

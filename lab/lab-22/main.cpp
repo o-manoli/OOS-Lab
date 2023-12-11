@@ -3,7 +3,8 @@
 #include <iomanip>
 using namespace std;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
    double d = 1.234;
    cout << " Nr Oct  Hex String  Fixed     Scientific " << endl;
    for (int k = 1; k < 11; k++)

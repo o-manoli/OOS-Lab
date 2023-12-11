@@ -6,7 +6,8 @@
 
 using namespace std;
 
-class MyException {
+class MyException
+{
    string _exception;
 
    public:
@@ -18,15 +19,15 @@ class MyException {
       + ", Zeile: " + to_string(line) + "." ;
    }
 
-   virtual const char* what() const
+   const char* what() const noexcept
    {
       return _exception.c_str();
    }
 
 };
 
-class ElefantMeetsMouse : public MyException {
-
+class ElefantMeetsMouse : public MyException
+{
    public:
 
    ElefantMeetsMouse(string file, int line)
@@ -100,7 +101,7 @@ class Zoo
 
       if (_name.length() < 4)
          throw MyException(
-            __FILE__, __LINE__ + 56,   // guess work
+            __FILE__, __LINE__ + 55,   // guess work
             "'Zooname zu kurz'"
          );
 
