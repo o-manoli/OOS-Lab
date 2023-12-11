@@ -9,13 +9,13 @@ using namespace std;
 
 class Manager : public Employee
 {
-	double _salary;
+   double _salary;
 
-	public:
+   public:
 
-	Manager(const string, const string, double);
-	double get_income() const;
-	void print() const;
+   Manager(const string, const string, double);
+   double get_income() const;
+   void print() const;
 };
 
 #endif /* MANAGER_H */

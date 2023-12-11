@@ -8,33 +8,33 @@ using std::array;
 
 int main(int argc, char* argv[]){
 
-	int size;
+   int size;
 
-	do {
-		cout << "Anzahl eingeben:" << endl;
-		cin >> size;
-	} while (size > MAX_SIZE || size < 0);
+   do {
+      cout << "Anzahl eingeben:" << endl;
+      cin >> size;
+   } while (size > MAX_SIZE || size < 0);
 
-	array<int, MAX_SIZE> A;
+   array<int, MAX_SIZE> A;
 
-	int i = 0;
+   int i = 0;
 
-	while (i < size){
-		cout << "Zahl eingeben:" << endl;
-		cin >> A[i++];
-	}
+   while (i < size){
+      cout << "Zahl eingeben:" << endl;
+      cin >> A[i++];
+   }
 
-	int sum = 0;
+   int sum = 0;
 
-	for (i = 0; i < size; i++){
-		cout << "Zahl["<< i << "]: " << A[i] << "\n";
-		sum += A[i];
-	}
+   for (i = 0; i < size; i++){
+      cout << "Zahl["<< i << "]: " << A[i] << "\n";
+      sum += A[i];
+   }
 
-	float average = static_cast<float>(sum) / static_cast<float>(size);
+   float average = static_cast<float>(sum) / static_cast<float>(size);
 
-	cout << "Durchschnitt: " << average << endl;
+   cout << "Durchschnitt: " << average << endl;
 
-	return 0;
+   return 0;
 }
 

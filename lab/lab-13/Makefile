@@ -10,16 +10,16 @@ Headers=$(DEPSRCs:.cpp=.h)
 all: run clean
 
 link: $(Headers) $(DEPs) $(OBJs)
-	$(CC) -o $(EXE) $(Headers) $(DEPs) $(OBJs)
+   $(CC) -o $(EXE) $(Headers) $(DEPs) $(OBJs)
 
 %.o: %.cpp
-	$(CC) $(CFlags) -o $@ $<
+   $(CC) $(CFlags) -o $@ $<
 
 run: link
-	@ echo - - - - - - - - - - - - - -
-	@ ./$(EXE)
-	@ echo - - - - - - - - - - - - - -
+   @ echo - - - - - - - - - - - - - -
+   @ ./$(EXE)
+   @ echo - - - - - - - - - - - - - -
 
 clean:
-	rm -f *.o $(EXE)
+   rm -f *.o $(EXE)
 

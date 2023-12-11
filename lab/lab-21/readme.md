@@ -310,7 +310,7 @@ class Zoo
 
       if (_name.length() < 4)
          throw MyException(
-            __FILE__, __LINE__ + 56,	// guess work
+            __FILE__, __LINE__ + 56,   // guess work
             "'Zooname zu kurz'"
          );
 

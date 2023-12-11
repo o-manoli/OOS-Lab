@@ -6,16 +6,16 @@ OBJs=main
 all: run clean
 
 link: $(OBJs)
-	@ $(CC) -o $(EXE) *.o
+   @ $(CC) -o $(EXE) *.o
 
 %:%.cpp
-	@ $(CC) $(CFlags) -o $@.o $<
+   @ $(CC) $(CFlags) -o $@.o $<
 
 run: link
-	@ echo - - - - - - - - - - - - - -
-	@ ./$(EXE)
-	@ echo - - - - - - - - - - - - - -
+   @ echo - - - - - - - - - - - - - -
+   @ ./$(EXE)
+   @ echo - - - - - - - - - - - - - -
 
 clean:
-	rm -f *.o $(EXE)
+   rm -f *.o $(EXE)
 

@@ -9,14 +9,14 @@ using namespace std;
 
 class Worker : public Employee
 {
-	double _hourly_earnings;
-	double _hours;
+   double _hourly_earnings;
+   double _hours;
 
-	public:
+   public:
 
-	Worker(const string, const string, double, double);
-	double get_income() const;
-	void print() const;
+   Worker(const string, const string, double, double);
+   double get_income() const;
+   void print() const;
 };
 
 #endif /* WORKER_H */

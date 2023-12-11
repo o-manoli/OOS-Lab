@@ -7,16 +7,16 @@ OBJS=$(SRCS:.cpp=.o)
 all: run clean
 
 main: $(OBJS)
-	@ $(CC) -o $(EXE) *.o
+   @ $(CC) -o $(EXE) *.o
 
 %.o: %.cpp
-	@ $(CC) $(CFlags) $< -o $@
+   @ $(CC) $(CFlags) $< -o $@
 
 run: main
-	@ echo - - - - - - - - - - -
-	@ ./$(EXE)
-	@ echo - - - - - - - - - - -
+   @ echo - - - - - - - - - - -
+   @ ./$(EXE)
+   @ echo - - - - - - - - - - -
 
 clean:
-	@ rm -f *.o $(EXE)
+   @ rm -f *.o $(EXE)
 
