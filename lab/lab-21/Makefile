@@ -9,19 +9,19 @@ test_runner=python3 tester.py
 all: test clean
 
 link: $(OBJs)
-   $(CC) -o $(EXE) *.o
+	$(CC) -o $(EXE) *.o
 
 %:%.cpp
-   $(CC) $(CFlags) $< -o $@.o
+	$(CC) $(CFlags) $< -o $@.o
 
 run: link
-   @ echo - - - - - - - - - - - - - -
-   @ ./$(EXE)
-   @ echo - - - - - - - - - - - - - -
+	@ echo - - - - - - - - - - - - - -
+	@ ./$(EXE)
+	@ echo - - - - - - - - - - - - - -
 
 test: link
-   $(test_runner) ./$(EXE) $(test_cases)
+	$(test_runner) ./$(EXE) $(test_cases)
 
 clean:
-   rm -f *.o $(EXE)
+	rm -f *.o $(EXE)
 
