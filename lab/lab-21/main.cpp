@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <exception>
+#include <memory>
 
 using namespace std;
 
@@ -34,7 +35,6 @@ class ElefantMeetsMouse : public MyException
    : MyException(file, line, "'Elefant trifft auf Maus'") {}
 };
 
-
 class Animal
 {
    string _name;
@@ -56,41 +56,26 @@ class Animal
    virtual Animal *clone() const = 0;
 };
 
-class Elefant : public Animal
+template<class Species>
+class Cloneable: public Animal
 {
    public:
-
-   Animal* clone() const
-   {
-      return new Elefant(*this);
-   }
+    virtual Animal *clone() const
+    {
+        return new Species(static_cast<Species const&>(*this));
+    }
 };
 
-class Tiger : public Animal
-{
-   public:
+class Elefant : public Cloneable<Elefant> {};
 
-   Animal* clone() const
-   {
-      return new Tiger(*this);
-   }
-};
+class Tiger : public Cloneable<Tiger> {};
 
-
-class Mouse : public Animal
-{
-   public:
-
-   Animal* clone() const
-   {
-      return new Mouse(*this);
-   }
-};
+class Mouse : public Cloneable<Mouse> {};
 
 class Zoo
 {
    string _name;
-   vector<Animal *> animals;
+   vector<Animal *> _animals;
 
    public:
 
@@ -101,7 +86,7 @@ class Zoo
 
       if (_name.length() < 4)
          throw MyException(
-            __FILE__, __LINE__ + 55,   // guess work
+            __FILE__, __LINE__ + 70,   // guess work
             "'Zooname zu kurz'"
          );
 
@@ -110,31 +95,27 @@ class Zoo
 
    void add_animal(const Animal &animal)
    {
+      if (!_animals.empty())
       if (
-         !animals.empty()
-      ) {
-      if(
-         typeid(animal) == typeid(Elefant)
-         || typeid(animal) == typeid(Mouse)
-      ){
-      if (
-         typeid(*animals.back()) == typeid(Elefant)
-         || typeid(*animals.back()) == typeid(Mouse)
-      ) {
-      if (
-         typeid(animal) != typeid(*animals.back())
-      ) throw ElefantMeetsMouse( // erst wenn alle Bedingen erfüllt sind!
-            __FILE__, __LINE__ + 52   // also guessing
+         Animal
+         *A = const_cast<Animal *>(&animal),
+         *B = _animals.back();
+         (
+            dynamic_cast<Mouse *>(A) && dynamic_cast<Elefant *>(B)
+         ) || (
+            dynamic_cast<Mouse *>(B) && dynamic_cast<Elefant *>(A)
+         )
+      )
+         throw ElefantMeetsMouse( // erst wenn alle Bedingen erfüllt sind!
+               __FILE__, __LINE__ + 69   // also guessing
          );
-            }
-         }
-      }
-      animals.push_back(animal.clone()); // ansonsten
+
+      _animals.push_back(animal.clone()); // ansonsten
    }
 
    void print() const
    {
-      for (const auto &a : animals)
+      for (const auto &a : _animals)
          a->print(true);
    }
 };
