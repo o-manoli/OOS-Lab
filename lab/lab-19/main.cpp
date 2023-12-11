@@ -7,31 +7,40 @@ using namespace std;
 
 class Meal
 {
+   protected:
+
    string _name;
+   vector<string> _toppings;
 
    public:
 
    Meal(string name) : _name(name) {}
 
-   virtual void add_topping(string) = 0;
+   void list_toppings()
+   {
+      for (const auto &t : _toppings)
+         cout << "- " << t <<endl;
+   }
+
+   virtual void add_topping(string topping)
+   {
+      _toppings.push_back(topping);
+   }
+
    virtual void prepare() = 0;
 
-   friend ostream& operator<<(ostream& S , const Meal& M)
+   friend ostream& operator<<(ostream& S , const Meal& meal)
    {
-      return S << M._name;
+      return S << meal._name;
    }
 };
 
 
 class Pizza : public Meal
 {
-   vector<string> _toppings;
-
    public:
 
    Pizza(string name) : Meal(name) {}
-
-   void add_topping(string topping) {_toppings.push_back(topping);}
 
    void prepare()
    {
@@ -40,20 +49,15 @@ class Pizza : public Meal
       << ". Pizzaboden, belegt mit: "
       << endl;
 
-      for (const auto &t : _toppings)
-         cout << "- " << t <<endl;
+      list_toppings();
    }
 };
 
 class Burger : public Meal
 {
-   vector<string>_toppings;
-
    public:
 
    Burger(string name): Meal(name){}
-
-   void add_topping(string topping) {_toppings.push_back(topping);}
 
    void prepare()
    {
@@ -62,8 +66,7 @@ class Burger : public Meal
       << ". Brötchen mit: "
       << endl;
 
-      for (const auto &t : _toppings)
-         cout << "- " << t <<endl;
+      list_toppings();
    }
 };
 
