@@ -105,7 +105,7 @@ class Store
       _subscribers.remove(member);
    }
 
-   void notify_subscriber(string broadcast)
+   void notify_subscribers(string broadcast)
    {
       for (const auto &member: _subscribers)
          member->update(broadcast);
@@ -134,14 +134,14 @@ class Store
       cout << "Neuer Bestand: " << _inventory[article] << endl;
 
       if (_inventory[article] == 0)
-         notify_subscriber(
+         notify_subscribers(
             "Artikel vom Typ " + article + " nicht mehr verfügbar"
          );
    }
 
    void deliver_products(string article, int amount)
    {
-      bool notify = _inventory[article]== 0;
+      bool notify = _inventory[article] == 0;
 
       cout
       << "Vorrätige Artikel vom Typ " << article
@@ -157,7 +157,7 @@ class Store
       cout << "Neuer Bestand: " << _inventory[article] << endl;
 
       if (notify)
-         notify_subscriber(
+         notify_subscribers(
             "Neue Artikel vom Typ " + article + " verfügbar."
          );
    }
